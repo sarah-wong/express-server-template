@@ -5,21 +5,3 @@ class Message{
         this.timestamp = Date.now();
     }
 }
-
-function create(){
-
-}
-
-function read(){
-
-}
-
-function update(){
-
-}
-
-function del(){
-
-}
-
-module.exports = {create, read, update, del}
