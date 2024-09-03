@@ -1,4 +1,9 @@
 const express = require('express');
+const userModel = require('./models/user');
+const channelModel = require('./models/channel');
+const messageModel = require('./models/message');
+
+
 const app = express();
 
 const PORT = '3000';

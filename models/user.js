@@ -13,3 +13,5 @@ function update(){
 function del(){
 
 }
+
+module.exports = {create, read, update, del}
