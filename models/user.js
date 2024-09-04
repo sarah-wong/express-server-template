@@ -1,10 +1,12 @@
 const uniqueID = require('generate-unique-id');
 const validator = require('email-validator');
+const passwordReqs = /^(?=*[A-Z])(?=*[a-z])(?=*[0-9])(?=*[^A-Za-z0-9]).{8,}$/;
 
 class User{
-    constructor(email, username){
+    constructor(email, username, password){
         this.email = email;
         this.username = username;
+        this.password = password;
     }
 }
 
@@ -33,9 +35,17 @@ function create(email, username){
     else{
         console.log(`${username} is valid and unique, proceeding...`);
     }
+    // check password strength
+    if(password.match(passwordReqs)){
+        console.log('Password requirements met, proceeding....');
+    }
+    else{
+        throw new EvalError(`Password does not meet requirements!`);
+    }
 
     const id = uniqueID();
-    users.push(new User(email, username));
+    users[id] = new User(email, username, password);
+    console.log(`Success!`);
 }
 
 function read(id){
