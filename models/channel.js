@@ -1,6 +1,6 @@
 const makeNewUID = require('generate-unique-id');
 const user = require('./user');
-const Message = require('./message');
+const message = require('./message');
 const channels = {};
 
 class Channel{
@@ -10,7 +10,7 @@ class Channel{
         this.messages = [];
     }
     sendMsg(msg){
-        if(msg instanceof Message && user.get(msg.userID)){
+        if(msg instanceof message && user.get(msg.userID)){
             this.messages.push(msg);
             return true;
         }
@@ -21,6 +21,7 @@ class Channel{
 function add(name, description){
     const uid = makeNewUID();
     channels[uid] = new Channel(name, description);
+    return uid;
 }
 
 function get(uid){
@@ -42,4 +43,8 @@ function remove(uid){
     }
 }
 
-module.exports = {add, get, remove};
+function all(){
+    return channels;
+}
+
+module.exports = {add, get, remove, all};

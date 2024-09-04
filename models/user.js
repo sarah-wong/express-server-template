@@ -13,6 +13,7 @@ const users = {};
 function add(email, username, password){
     const uid = makeNewUID();
     users[uid] = new User(email, username, password);
+    return uid;
 }
 
 function get(uid){
@@ -34,4 +35,8 @@ function remove(uid){
     }
 }
 
-module.exports = {add, get, remove};
+function all(){
+    return users;
+}
+
+module.exports = {add, get, remove, all};
