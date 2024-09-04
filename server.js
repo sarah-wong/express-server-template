@@ -8,15 +8,22 @@ const app = express();
 
 const PORT = '3000';
 
+app.engine('html', require('ejs').renderFile);
+
+app.use((req, res, next)=>{
+    console.log('New Request!');
+    next();
+})
+
 app.use((req, res, next)=>{
     const httpMethod = req.method.toUpperCase();
     const path = req.path;
-    console.log(`Got ${httpMethod} Request for '${path}'`);
+    console.log(`Logged ${httpMethod} Request for '${path}'`);
     next();
 })
 
 app.get('/', (req, res)=>{
-    res.send("Welcome to the Homepage");
+    res.render('home.html');
 })
 
 app.listen(PORT, ()=>{
