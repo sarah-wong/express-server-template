@@ -1,7 +1,9 @@
 class Message{
-    constructor(user, content){
-        this.user = user;
+    constructor(userID, content, timestamp){
+        this.user = userID;
         this.content = content;
-        this.timestamp = Date.now();
+        this.timestamp = timestamp;
     }
 }
+
+module.exports = Message;
