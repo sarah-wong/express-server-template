@@ -8,7 +8,10 @@ const app = express();
 
 const PORT = '3000';
 
-app.engine('html', require('ejs').renderFile);
+app.engine('ejs', require('ejs').renderFile);
+
+
+app.use(express.static('public'));
 
 app.use((req, res, next)=>{
     console.log('New Request!');
@@ -23,7 +26,7 @@ app.use((req, res, next)=>{
 })
 
 app.get('/', (req, res)=>{
-    res.render('home.html');
+    res.render('home.ejs');
 })
 
 app.listen(PORT, ()=>{
