@@ -1,6 +1,7 @@
 const uniqueID = require('generate-unique-id');
 const validator = require('email-validator');
 const passwordReqs = /^(?=*[A-Z])(?=*[a-z])(?=*[0-9])(?=*[^A-Za-z0-9]).{8,}$/;
+const usernameReqs = /^(?!*[^A-Za-z0-9_]).{4,}$/;
 
 class User{
     constructor(email, username, password){
@@ -29,8 +30,8 @@ function create(email, username){
         throw new EvalError(`Username '${username}' is taken!`)
     }
     // check username does not contain special characters
-    else if(username.match(SPECHAR_REGEX)){
-        throw new EvalError(`Username CANNOT contain special characters!`)
+    else if(!username.match(usernameReqs)){
+        throw new EvalError(`Username does not meet requirements!`);
     }
     else{
         console.log(`${username} is valid and unique, proceeding...`);
@@ -45,10 +46,12 @@ function create(email, username){
 
     const id = uniqueID();
     users[id] = new User(email, username, password);
-    console.log(`Success!`);
+    console.log(`Success! New user ${username} registered (UserID: ${id})`);
+    return id;
 }
 
 function read(id){
+    console.log(`Attempting to retrieve UserID: ${id}`);
     if(users.keys().includes(id)){
 
     }
