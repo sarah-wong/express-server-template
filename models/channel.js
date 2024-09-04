@@ -1,4 +1,5 @@
 const makeNewUID = require('generate-unique-id');
+const user = require('./user');
 const Message = require('./message');
 const channels = {};
 
@@ -9,7 +10,7 @@ class Channel{
         this.messages = [];
     }
     sendMsg(msg){
-        if(msg instanceof Message){
+        if(msg instanceof Message && user.get(msg.userID)){
             this.messages.push(msg);
             return true;
         }

@@ -10,7 +10,7 @@ class User{
 
 const users = {};
 
-function add(email, username, pasword){
+function add(email, username, password){
     const uid = makeNewUID();
     users[uid] = new User(email, username, password);
 }
